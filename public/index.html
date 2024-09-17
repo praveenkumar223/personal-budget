@@ -102,24 +102,73 @@
                 </div>
     
                 <div class="text-box">
-                    <h1>Free</h1>
+                    <h1>Praveens's budget chart</h1>
                     <p>
-                        This app is free!!! And you are the only one holding your data!
+                        <canvas id="sample" width="450" height="450"></canvas>
                     </p>
                 </div>
-
+    
             </div>
-
+    
         </div>
-    </main>
 
-    <!-- This is a Semantic HTML Change -->
-    <!-- This is an A11y Change -->
-    <footer class="bottom" role="contentinfo">
-        <div class="center">
-            All rights reserved &copy; Praveen Kumar Meka
-        </div>
-    </footer>
+        </main>
+        <footer> <!-- This is a Semantic HTML Change -->
+            <div class="bottom">
+                <div class="center">
+                    All rights reserved &copy; Praveen Kumar Meka
+                </div>
+            </div>
+        </footer>
+        <!--D3JS code start-->
+        
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.7/axios.min.js" integrity="sha512-DdX/YwF5e41Ok+AI81HI8f5/5UsoxCVT9GKYZRIzpLxb8Twz4ZwPPX+jQMwMhNQ9b5+zDEefc+dcvQoPWGNZ3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" integrity="sha512-CQBWl4fJHWbryGE+Pc7UAxWMUMNMWzWxF4SQo9CgkJIN1kx6djDQZjh3Y8SZ1d+6I+1zze6Z7kHXO7q3UyZAWw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+
+        var datasource = {
+            datasets: [
+                {
+                    data: [30, 350, 90],
+                    backgroundColor: [
+                        '#ffcd56',
+                        '#ff6384',
+                        '#36a2eb',
+                        '#fd6b19',
+
+                    ],
+                }
+            ],
+            labels: [
+                'Eat out',
+                'Rent',
+                'Groceries'
+            ]
+        };
+
+
+        function createChart() {
+            var ctx = document.getElementById("sample").getContext("2d");
+            var myPieChart = new Chart(ctx, {
+                type: 'pie',
+                data: datasource
+            });
+        }
+        function getBudget() {
+            axios.get('http://localhost:3000/budget')
+                .then(function (res) {
+                    console.log(res);
+                    for (var i = 0; i < res.data.mybudget.length; i++) {
+                        datasource.datasets[0].data[i] = res.data.mybudget[i].budget;
+                        datasource.labels[i] = res.data.mybudget[i].title;
+                    }
+                    createChart();
+                }
+            );
+        }
+        getBudget();   
+    </script>
 
 </body>
 </html>

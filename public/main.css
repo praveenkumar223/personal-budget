@@ -1,28 +1,28 @@
-* {
+*{
     box-sizing: border-box;
 }
 
 body {
     font-size: 10px;
     font-family: Tahoma, Arial;
-}
-
-div.menu {
+}     
+/* Changed to nav  from div for semantic HTML */
+nav.menu {
     width: 100%;
     background-color: #4d5791;
     height: 44px;
     padding: 0 40px;
 }
-
-div.menu ul,
-div.menu ul li {
-    margin: 0;
+nav.menu ul,
+nav.menu ul li { /* changed from div to nav */ 
+     margin: 0;
     padding: 0 ;
     list-style: none;
     display: inline-block;
 }
 
-div.menu ul li a {
+nav.menu ul li a { /* changed from div to nav */
+
     display: block;
     padding: 0 20px;
     line-height: 44px;
@@ -32,42 +32,44 @@ div.menu ul li a {
     margin: 0;
 }
 
-div.menu ul li a:hover  {
+
+
+nav.menu ul li a:hover  {
+
     background-color: white;
     color: #4d5791;
 }
 
-div.hero {
+
+
+header.hero { /* changed from  Div to header */
+
     height: 350px;
     background-color: #b4c6f0;
-    background-image: url('bg.png');
+    background-image: url('/bg.png');
     background-size: 400px;
     background-repeat: no-repeat;
     background-position: center bottom;
     padding-top: 40px;
 }
-
-div.hero h1,
-div.hero h2 {
+header.hero h1,
+header.hero h2 { /* changed from div to header */
     text-align: center;
     margin: 0;
 }
-
-div.hero h1 {
+header.hero h1 {
     color: #fff;
     font-size: 4.2em;
     margin-bottom: 20px;
 }
-
-div.hero h2 {
-    color: #4d5791;
+header.hero h2 {
+        color: #4d5791;
 }
 
 .container {
     padding: 40px;
     width: 100%;
 }
-
 .page-area {
     max-width: 768px;
     display: inline-block;
@@ -83,7 +85,7 @@ div.hero h2 {
     text-align: center;
 }
 
-.container div.text-box {
+.container article.text-box {
     display: inline-block;
     width: 100%;
     max-width: 340px;
@@ -91,22 +93,27 @@ div.hero h2 {
     margin: 20px;
 }
 
-.skip-link {
-    position: absolute;
-    top: -40px;
-    left: 0;
-    background: #000;
-    color: #fff;
-    padding: 8px;
-    z-index: 1000;
-}
-.skip-link:focus {
-    top: 0;
-}
-
 @media screen and (min-width: 768px) {
-    .container .div.text-box {
+    .container .article.text-box {
         margin: 10px;
     }
 }
-
+footer.bottom {
+    background-color: #333; 
+    color: #fff; 
+    padding: 20px; 
+    text-align: center; 
+}
+footer.bottom div.center {
+    font-size: 14px; 
+}
+footer.bottom div.center::before {
+    content: "\00a9"; 
+    margin-right: 5px; 
+}
+a:focus, button:focus {
+    outline: 2px solid #4d5791; 
+}
+input:focus, textarea:focus, select:focus {
+    outline: 2px solid #4d5791; 
+}
